@@ -42,6 +42,7 @@ $(APP_SRC_PKG)/R.java : AndroidManifest.xml \
 
 $(SAMPLE_CLASS) : $(APP_SRC_PKG)/*.java \
 		$(APP_SRC_PKG)/R.java
+	mkdir -p build/classes
 	( cd src ; \
 	javac -verbose \
 		-cp ../libs/demolib.jar \
