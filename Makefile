@@ -42,7 +42,7 @@ $(APP_SRC_PKG)/R.java : AndroidManifest.xml \
 
 $(SAMPLE_CLASS) : $(APP_SRC_PKG)/*.java \
 		$(APP_SRC_PKG)/R.java
-	mkdir -p build/classes
+	mkdir -m 770 -p build/classes
 	( cd src ; \
 	javac -verbose \
 		-cp ../libs/demolib.jar \
@@ -62,6 +62,7 @@ build/dpad.dex : $(SAMPLE_CLASS)
 dist/dpad.apk : build/dpad.dex \
 		build/resources.res \
 		$(APP_SRC_PKG)/R.java
+	mkdir -m 770 -p dist
 	# android packager
 	apkbuilder \
 		dist/dpad.apk \
