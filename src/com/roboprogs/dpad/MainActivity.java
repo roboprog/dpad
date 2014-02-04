@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package com.roboprogs.adhd;
+package com.roboprogs.dpad;
 
 import android.app.Activity;
 import android.media.MediaPlayer;
