@@ -25,6 +25,10 @@ class					MainActivity
 	extends				Activity
 	{
 
+	/** handle to logging panel */
+	private
+	TextView			logBox;
+
 	/** accumulated log (emulation) text */
 	private
 	String				logText = "";
@@ -50,11 +54,21 @@ class					MainActivity
 	private
 	void				wireEvents()
 		{
-		// TODO
+		this.logBox = (TextView) findViewById( R.id.dpad_log);
 		}  // _____________________________________________
 
 	/**
-	 * Spout a log mmessage.
+	 * Update display.
+	 */
+	private
+	void				updateStatus()
+		{
+		this.logBox.setText( this.logText);
+		// TODO:  update other controls
+		}  // _____________________________________________
+
+	/**
+	 * Spout a log message.
 	 *  TODO: copy the text into a scrolling text box control, as well.
 	 */
 	private
@@ -70,7 +84,7 @@ class					MainActivity
 		// (newest on top, so don't have to scroll down)
 		this.logText = ( "I) " + msg + "\n" + this.logText);
 		// TODO: timestamp
-		// TODO updateStatus();
+		updateStatus();
 		}  // _____________________________________________
 
 	}  // =================================================
