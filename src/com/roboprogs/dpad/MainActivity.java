@@ -1,24 +1,19 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.roboprogs.dpad;
 
 import android.app.Activity;
-import android.media.MediaPlayer;
-import android.net.Uri;
+// import android.media.MediaPlayer;
+// import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
+// import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
-import android.widget.SeekBar;
+// import android.widget.SeekBar;
 import android.widget.TextView;
 
-import org.library.*;
+// import org.library.*;
 
 /**
- * Event handlers for Busy Box.
+ * Main view for "DPAD" test bed applet.
  */
 public
 class					MainActivity
@@ -86,6 +81,26 @@ class					MainActivity
 		// TODO: timestamp
 		updateStatus();
 		}  // _____________________________________________
+
+	/**
+	 * Handler for DPAD button presses.
+	 */
+	private
+	class				BtnTracker
+		implements		View.OnClickListener
+		{
+
+		/** catch button press/click events */
+		@Override
+		public
+		void			onClick
+			(
+			View		v
+			)
+			{
+			}  // _________________________________________
+
+		}  // =============================================
 
 	}  // =================================================
 
