@@ -16,7 +16,11 @@ SAMPLE_CLASS=$(APP_CLS_PKG)/MainActivity.class
 
 # ======= targets ======= 
 
+tags: $(APP_SRC_PKG)/*.java
+	ctags $(APP_SRC_PKG)/*.java
+
 clean:
+	rm -f tags
 	rm -rf build/classes/*
 	rm -f build/*.*  # avoid carping about subdir
 	rm -rf dist/*
