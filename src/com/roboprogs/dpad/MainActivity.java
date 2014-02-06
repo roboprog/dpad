@@ -7,7 +7,7 @@ import android.os.Bundle;
 // import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
-// import android.widget.SeekBar;
+import android.widget.Button;
 import android.widget.TextView;
 
 // import org.library.*;
@@ -27,6 +27,22 @@ class					MainActivity
 	/** accumulated log (emulation) text */
 	private
 	String				logText = "";
+
+	/** up button */
+	private
+	Button				up;
+
+	/** down button */
+	private
+	Button				down;
+
+	/** left button */
+	private
+	Button				left;
+
+	/** right button */
+	private
+	Button				right;
 
     /** Called when the activity is first created. */
     @Override
@@ -49,7 +65,20 @@ class					MainActivity
 	private
 	void				wireEvents()
 		{
+		BtnTracker		btnTracker;
+
 		this.logBox = (TextView) findViewById( R.id.dpad_log);
+
+		btnTracker = new BtnTracker();
+		this.up = (Button) findViewById( R.id.dpad_up);
+		this.up.setOnClickListener( btnTracker);
+		this.down = (Button) findViewById( R.id.dpad_down);
+		this.down.setOnClickListener( btnTracker);
+		this.left = (Button) findViewById( R.id.dpad_left);
+		this.left.setOnClickListener( btnTracker);
+		this.right = (Button) findViewById( R.id.dpad_right);
+		this.right.setOnClickListener( btnTracker);
+
 		}  // _____________________________________________
 
 	/**
@@ -98,6 +127,10 @@ class					MainActivity
 			View		v
 			)
 			{
+			Button		btn;
+
+			btn = (Button) v;
+			info( "Button " + btn.getText() + " pressed");
 			}  // _________________________________________
 
 		}  // =============================================
