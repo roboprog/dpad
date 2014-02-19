@@ -5,11 +5,17 @@ all: clean build install # run
 
 # ======= macros ======= 
 
+# base name to use for app identifiers
+BNAME=dpad
+
 # directory for the Java files
-APP_SRC_PKG=src/com/roboprogs/dpad
+APP_SRC_PKG=src/com/roboprogs/$(BNAME)
 
 # directory for the class files
-APP_CLS_PKG=build/classes/com/roboprogs/dpad
+APP_CLS_PKG=build/classes/com/roboprogs/$(BNAME)
+
+# Java package name of app's main class
+APP_J_PKG=com.roboprogs.$(BNAME)
 
 # sample class file (all built at same time)
 SAMPLE_CLASS=$(APP_CLS_PKG)/MainActivity.class
@@ -26,7 +32,7 @@ clean:
 	rm -rf dist/*
 	rm -f $(APP_SRC_PKG)/R.java
 
-build: dist/dpad_signed.apk
+build: dist/$(BNAME)_signed.apk
 
 # mk_bld_dirs:
 #	mkdir -m 770 -p dist
@@ -51,51 +57,51 @@ $(SAMPLE_CLASS) : $(APP_SRC_PKG)/*.java \
 	javac -verbose \
 		-cp ../libs/demolib.jar \
 		-d ../build/classes \
-		com/roboprogs/dpad/*.java )
+		com/roboprogs/$(BNAME)/*.java )
 
-build/dpad.dex : $(SAMPLE_CLASS)
+build/$(BNAME).dex : $(SAMPLE_CLASS)
 	# jvm/class to dex ('droid executable) conversion
 	( cd build/classes ; \
 	dx --dex \
 		--verbose \
 		--no-strict \
-		--output=../dpad.dex \
+		--output=../$(BNAME).dex \
 		com \
 		../../libs/demolib.jar )
 
-dist/dpad.apk : build/dpad.dex \
+dist/$(BNAME).apk : build/$(BNAME).dex \
 		build/resources.res \
 		$(APP_SRC_PKG)/R.java
 	mkdir -m 770 -p dist
 	# android packager
 	apkbuilder \
-		dist/dpad.apk \
+		dist/$(BNAME).apk \
 		-v \
 		-u \
 		-z build/resources.res \
-		-f build/dpad.dex 
+		-f build/$(BNAME).dex 
 
-dist/dpad_signed.apk : dist/dpad.apk
+dist/$(BNAME)_signed.apk : dist/$(BNAME).apk
 	( cd dist ; \
-	signer dpad.apk dpad_signed.apk )
+	signer $(BNAME).apk $(BNAME)_signed.apk )
 
 install: build
-	# rm /sdcard/dpad_signed.apk
+	# rm /sdcard/$(BNAME)_signed.apk
 	# put self signed android package on "SD Card"
-	cp -f ./dist/dpad_signed.apk /sdcard/
+	cp -f ./dist/$(BNAME)_signed.apk /sdcard/
 	# use activity manager to install/update app
 	am start \
 		--user 0 \
 		-a android.intent.action.VIEW \
 		-t application/vnd.android.package-archive \
-		-d file:///sdcard/dpad_signed.apk
+		-d file:///sdcard/$(BNAME)_signed.apk
 
 run:
 	# use activity manager to start app
 	am start \
 		--user 0 \
 		-a android.intent.action.MAIN \
-		-n com.roboprogs.dpad/.MainActivity
+		-n $(APP_J_PKG)/.MainActivity
 
 
 # vim: ts=4 sw=4 ai
