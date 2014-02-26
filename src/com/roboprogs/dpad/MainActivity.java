@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 /**
  * Main view for "DPAD" test bed applet.
+ *  TODO: create an application class to store game state.
  */
 public
 class					MainActivity
@@ -27,6 +28,10 @@ class					MainActivity
 	/** accumulated log (emulation) text */
 	private
 	String				logText = "";
+
+	/** handle to placeholder panel */
+	private
+	TextView			placeholder;
 
 	/** up button */
 	private
@@ -68,6 +73,7 @@ class					MainActivity
 		BtnTracker		btnTracker;
 
 		this.logBox = (TextView) findViewById( R.id.dpad_log);
+		this.placeholder = (TextView) findViewById( R.id.dpad_canvas);
 
 		btnTracker = new BtnTracker();
 		this.up = (Button) findViewById( R.id.dpad_up);
@@ -88,6 +94,7 @@ class					MainActivity
 	void				updateStatus()
 		{
 		this.logBox.setText( this.logText);
+		this.placeholder.setText( "TODO");
 		// TODO:  update other controls
 		}  // _____________________________________________
 

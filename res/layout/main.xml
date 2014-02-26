@@ -1,82 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
 	android:padding="3mm"
 >
-	<TableLayout
+	<!-- panel for messages to emulate logging -->
+	<RelativeLayout
+		android:layout_weight="2"
 		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="fill_parent"
 	>
-		<!-- panel for messages to emulate logging -->
-		<TableRow
-			android:layout_height="wrap_content"
+		<TextView
+			android:id="@+id/dpad_log"
 			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:background="#111111"
+			android:textColor="#00EE00"
+			android:text=""
+			android:padding="3mm"
+		/>
+	</RelativeLayout>
+	<!-- TODO:  Canvas area -->
+	<RelativeLayout
+		android:layout_weight="6"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+	>
+		<TextView
+			android:id="@+id/dpad_canvas"
+			android:layout_weight="6"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:background="#000000"
+			android:textColor="#EE0000"
+			android:text="TODO: put graphics here"
+			android:padding="3mm"
+		/>
+	</RelativeLayout>
+	<!-- sparsely populated 3 x 3 grid -->
+	<RelativeLayout
+		android:layout_weight="2"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+	>
+		<TableLayout
+			android:layout_weight="2"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
 		>
-			<TextView
-				android:id="@+id/dpad_log"
-				android:layout_span="3"
-				android:layout_width="fill_parent"
-				android:layout_height="fill_parent"
-				android:background="#111111"
-				android:textColor="#00EE00"
-				android:text=""
-				android:padding="3mm"
-			/>
-		</TableRow>
-
-		<!-- TODO:  Canvas area -->
-
-		<!-- sparsely populated 3 x 3 grid -->
-		<TableRow
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-		>
-			<Button
-				android:id="@+id/dpad_up"
-				android:layout_column="2"
+			<TableRow
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
-				android:text="Up"
-				android:padding="3mm"
-			/>
-		</TableRow>
-		<TableRow
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-		>
-			<Button
-				android:id="@+id/dpad_left"
-				android:layout_column="1"
+			>
+				<Button
+					android:id="@+id/dpad_up"
+					android:layout_column="2"
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="Up"
+					android:padding="3mm"
+				/>
+			</TableRow>
+			<TableRow
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
-				android:text="Left"
-				android:padding="3mm"
-			/>
-			<Button
-				android:id="@+id/dpad_right"
-				android:layout_column="3"
+			>
+				<Button
+					android:id="@+id/dpad_left"
+					android:layout_column="1"
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="Left"
+					android:padding="3mm"
+				/>
+				<Button
+					android:id="@+id/dpad_right"
+					android:layout_column="3"
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="Right"
+					android:padding="3mm"
+				/>
+			</TableRow>
+			<TableRow
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
-				android:text="Right"
-				android:padding="3mm"
-			/>
-		</TableRow>
-		<TableRow
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-		>
-			<Button
-				android:id="@+id/dpad_down"
-				android:layout_column="2"
-				android:layout_height="wrap_content"
-				android:layout_width="wrap_content"
-				android:text="Down"
-				android:padding="3mm"
-			/>
-		</TableRow>
-	</TableLayout>
+			>
+				<Button
+					android:id="@+id/dpad_down"
+					android:layout_column="2"
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="Down"
+					android:padding="3mm"
+				/>
+			</TableRow>
+		</TableLayout>
+	</RelativeLayout>
 </LinearLayout>
 <!--
 vim: ts=4 sw=4
