@@ -7,10 +7,9 @@ import android.os.Bundle;
 // import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
-// import org.library.*;
 
 /**
  * Main view for "DPAD" test bed applet.
@@ -59,9 +58,15 @@ class					MainActivity
 		{
         super.onCreate( icicle);
 
+		ViewGroup		root;
+
         setContentView( R.layout.main);
+		root = (ViewGroup) findViewById( R.id.dpad_root);
+		// root = null;
+		new Layout( this, root);  // TODO:  save this
 		wireEvents();
 		info( "Event handlers in place");
+		info( "Root view group: " + root);
 		}  // _____________________________________________
 
 	/**
