@@ -63,7 +63,7 @@ class					MainActivity
         setContentView( R.layout.main);
 		root = (ViewGroup) findViewById( R.id.dpad_root);
 		// root = null;
-		new Layout( this, root);  // TODO:  save this
+		// new Layout( this, root);  // TODO:  save this
 		wireEvents();
 		info( "Event handlers in place");
 		info( "Root view group: " + root);
