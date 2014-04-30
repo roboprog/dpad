@@ -11,7 +11,8 @@
 	<RelativeLayout
 		android:layout_weight="2"
 		android:layout_width="fill_parent"
-		android:layout_height="300dp"
+		android:layout_height="30mm"
+        android:layout_gravity="top"
 	>
 		<TextView
 			android:id="@+id/dpad_log"
@@ -27,7 +28,7 @@
 	<RelativeLayout
 		android:layout_weight="6"
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
+		android:layout_height="60mm"
 	>
 		<TextView
 			android:id="@+id/dpad_canvas"
@@ -44,12 +45,15 @@
 	<RelativeLayout
 		android:layout_weight="2"
 		android:layout_width="fill_parent"
-		android:layout_height="300dp"
+		android:layout_height="30mm"
+        android:layout_gravity="bottom"
 	>
 		<TableLayout
 			android:layout_weight="2"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
+            android:background="#c3964d"
+            android:gravity="center|center_vertical|fill"
 		>
 			<TableRow
 				android:layout_height="wrap_content"
