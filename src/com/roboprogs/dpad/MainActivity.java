@@ -1,6 +1,8 @@
 package com.roboprogs.dpad;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
 // import android.media.MediaPlayer;
 // import android.net.Uri;
 import android.os.Bundle;
@@ -64,6 +66,8 @@ class					MainActivity
 		root = (ViewGroup) findViewById( R.id.dpad_root);
 		// root = null;
 		// new Layout( this, root);  // TODO:  save this
+		// TODO:  get layout container, append CanvasView:
+		new CanvasView( this);
 		wireEvents();
 		info( "Event handlers in place");
 		info( "Root view group: " + root);
@@ -122,6 +126,38 @@ class					MainActivity
 		// TODO: timestamp
 		updateStatus();
 		}  // _____________________________________________
+
+	/**
+	 * Dummy view to export graphics canvas.
+	 */
+	private
+	class				CanvasView
+		extends			View
+		{
+
+		/**
+		 * Provide init data back to real (super class) constructor.
+		 */
+		public
+		CanvasView
+			(
+			Context		ctx
+			)
+			{
+			super( ctx);
+			}  // _________________________________________
+
+		@Override
+		protected
+		void			onDraw
+			(
+			Canvas		canvas
+			)
+			{
+			// TODO:  draw!
+			}  // _________________________________________
+
+		}  // =============================================
 
 	/**
 	 * Handler for DPAD button presses.
