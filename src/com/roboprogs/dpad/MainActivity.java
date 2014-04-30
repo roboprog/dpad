@@ -143,6 +143,9 @@ class					MainActivity
 
 			btn = (Button) v;
 			info( "Button " + btn.getText() + " pressed");
+
+			// request redraw on view used for Canvas:
+			MainActivity.this.placeholder.invalidate();
 			}  // _________________________________________
 
 		}  // =============================================
