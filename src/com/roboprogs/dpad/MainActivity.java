@@ -6,11 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-// import android.graphics.RectF;
-// import android.media.MediaPlayer;
-// import android.net.Uri;
 import android.os.Bundle;
-// import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +15,8 @@ import android.widget.TextView;
 
 /**
  * Main view for "DPAD" test bed applet.
- *  TODO: create an application class to store game state.
+ * <p>
+ * <///p>
  */
 public
 class					MainActivity
@@ -80,19 +77,14 @@ class					MainActivity
 		{
         super.onCreate( icicle);
 
-		ViewGroup		root;
 		ViewGroup		canvasContainer;
 
         setContentView( R.layout.main);
-		root = (ViewGroup) findViewById( R.id.dpad_root);
-		// root = null;
-		// new Layout( this, root);  // TODO:  save this
 		this.canvasView = new CanvasView( this);
 		canvasContainer = (ViewGroup) findViewById( R.id.dpad_canvas);
 		canvasContainer.addView( this.canvasView);
 		wireEvents();
 		info( "Event handlers in place");
-		info( "Root view group: " + root);
 		info( "Canvas view: " + this.canvasView);
 		}  // _____________________________________________
 
@@ -161,12 +153,10 @@ class					MainActivity
 	void				updateStatus()
 		{
 		this.logBox.setText( this.logText);
-		// TODO:  update other controls
 		}  // _____________________________________________
 
 	/**
 	 * Spout a log message.
-	 *  TODO: copy the text into a scrolling text box control, as well.
 	 */
 	private
 	void				info
