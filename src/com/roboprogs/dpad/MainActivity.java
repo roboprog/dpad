@@ -200,6 +200,50 @@ class					MainActivity
 		}  // _____________________________________________
 
 	/**
+	 * Draw the marker on the screen at its recorded position.
+	 *
+	 * @param canvas
+	 * 		the android graphics support object for the app,
+	 * 		note that care must be taken to distinguish
+	 * 		the amount of space the viewport/control actually has.
+	 */
+	private
+	void				drawMarker
+		(
+		Canvas			canvas
+		)
+		{
+		Rect			clipBounds;
+		int				maxX;
+		int				maxY;
+		float			y;
+		float			x;
+		float			radius;
+		Paint			paint;
+
+		// clear the screen
+		canvas.drawRGB( 0xa0, 0xa0, 0xa0);
+
+		// get metrics
+		// TODO:  only recalc when needed
+		clipBounds = canvas.getClipBounds();
+		// info( "Bounds: " + clipBounds);
+		maxX = clipBounds.width();
+		maxY = clipBounds.height();
+
+		// draw marker
+		x = (float) ( ( MainActivity.this.curX + 1) *
+				( maxX / ( NUM_HORIZONTAL + 1) ) );
+		y = (float) ( ( MainActivity.this.curY + 1) *
+				( maxY / ( NUM_VERTICAL + 1) ) );
+		radius = (float) ( maxY / 24.0);
+		paint = new Paint();
+		paint.setColor( Color.BLACK);
+		paint.setStyle( Paint.Style.FILL);
+		canvas.drawCircle( x, y, radius, paint);
+		}  // _________________________________________
+
+	/**
 	 * Spout a log message.
 	 */
 	private
@@ -238,6 +282,9 @@ class					MainActivity
 			super( ctx);
 			}  // _________________________________________
 
+		/**
+		 * Trap invalidate event, pass on canvas to drawing code.
+		 */
 		@Override
 		protected
 		void			onDraw
@@ -245,34 +292,7 @@ class					MainActivity
 			Canvas		canvas
 			)
 			{
-			Rect		clipBounds;
-			int			maxX;
-			int			maxY;
-			float		y;
-			float		x;
-			float		radius;
-			Paint		paint;
-
-			// clear the screen
-			canvas.drawRGB( 0xa0, 0xa0, 0xa0);
-
-			// get metrics
-			// TODO:  only recalc when needed
-			clipBounds = canvas.getClipBounds();
-			// info( "Bounds: " + clipBounds);
-			maxX = clipBounds.width();
-			maxY = clipBounds.height();
-
-			// draw marker
-			x = (float) ( ( MainActivity.this.curX + 1) *
-					( maxX / ( NUM_HORIZONTAL + 1) ) );
-			y = (float) ( ( MainActivity.this.curY + 1) *
-					( maxY / ( NUM_VERTICAL + 1) ) );
-			radius = (float) ( maxY / 24.0);
-			paint = new Paint();
-			paint.setColor( Color.BLACK);
-			paint.setStyle( Paint.Style.FILL);
-			canvas.drawCircle( x, y, radius, paint);
+			drawMarker( canvas);
 			}  // _________________________________________
 
 		}  // =============================================
