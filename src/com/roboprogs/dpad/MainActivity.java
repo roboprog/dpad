@@ -47,14 +47,6 @@ class					MainActivity
 	private
 	int					curY = 0;
 
-	/** handle to logging panel */
-	private
-	TextView			logBox;
-
-	/** accumulated log (emulation) text */
-	private
-	String				logText = "";
-
 	/** handle to placeholder panel */
 	private
 	View				canvasView;
@@ -75,6 +67,14 @@ class					MainActivity
 	private
 	Button				right;
 
+	/** handle to logging panel */
+	private
+	TextView			logBox;
+
+	/** accumulated log (emulation) text */
+	private
+	String				logText = "";
+
     /** Called when the activity is first created. */
     @Override
     public
@@ -88,7 +88,7 @@ class					MainActivity
 		extendLayout();
 		wireEvents();
 
-		// our logging supplement needs events wired up fist
+		// our logging supplement needs layout completed first, now log messages
 
 		info( "Event handlers in place");
 		info( "Canvas view: " + this.canvasView);
@@ -106,6 +106,8 @@ class					MainActivity
 		this.canvasView = new CanvasView( this);
 		canvasContainer = (ViewGroup) findViewById( R.id.dpad_canvas);
 		canvasContainer.addView( this.canvasView);
+
+		this.logBox = (TextView) findViewById( R.id.dpad_log);
 		}  // _____________________________________________
 
 	/**
@@ -115,8 +117,6 @@ class					MainActivity
 	void				wireEvents()
 		{
 		BtnTracker		btnTracker;
-
-		this.logBox = (TextView) findViewById( R.id.dpad_log);
 
 		btnTracker = new BtnTracker();
 		this.up = (Button) findViewById( R.id.dpad_up);
@@ -142,9 +142,9 @@ class					MainActivity
 		)
 		{
 		info( "Button " + btn.getText() + " pressed");
-		this.curX = updatePosition( btn, this.curX,
+		this.curX = getNewPosition( btn, this.curX,
 				this.right, this.left, NUM_HORIZONTAL);
-		this.curY = updatePosition( btn, this.curY,
+		this.curY = getNewPosition( btn, this.curY,
 				this.down, this.up, NUM_VERTICAL);
 		info( "Position: " + this.curX + ", " + this.curY);
 
@@ -168,7 +168,7 @@ class					MainActivity
 	 * 		the limit for this axis
 	 */
 	private
-	int					updatePosition
+	int					getNewPosition
 		(
 		Button			btn,
 		int				cur,
