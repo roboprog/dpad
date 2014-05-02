@@ -1,4 +1,5 @@
 *~
+.*.swp
 src/com/roboprogs/dpad/R.java
 build/*
 dist/*
