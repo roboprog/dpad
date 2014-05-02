@@ -3,6 +3,10 @@ package com.roboprogs.dpad;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
+// import android.graphics.RectF;
 // import android.media.MediaPlayer;
 // import android.net.Uri;
 import android.os.Bundle;
@@ -155,7 +159,32 @@ class					MainActivity
 			Canvas		canvas
 			)
 			{
-			// TODO:  draw!
+			Rect		clipBounds;
+			int			maxX;
+			int			maxY;
+			float		top;
+			float		left;
+			float		radius;
+			Paint		paint;
+
+			// clear the screen
+			canvas.drawRGB( 0xa0, 0xa0, 0xa0);
+
+			// get metrics
+			// TODO:  only recalc when needed
+			clipBounds = canvas.getClipBounds();
+			info( "Bounds: " + clipBounds);
+			maxX = clipBounds.width();
+			maxY = clipBounds.height();
+
+			// draw marker
+			left = (float) ( maxX / 2.0);
+			top = (float) ( maxY / 2.0);
+			radius = (float) ( maxY / 24.0);
+			paint = new Paint();
+			paint.setColor( Color.BLACK);
+			paint.setStyle( Paint.Style.FILL);
+			canvas.drawCircle( left, top, radius, paint);
 			}  // _________________________________________
 
 		}  // =============================================
