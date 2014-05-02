@@ -28,11 +28,11 @@ class					MainActivity
 
 	/** number of left/right moves */
 	private static final
-	int					NUM_HORIZONTAL = 4;
+	int					NUM_HORIZONTAL = 16;
 
 	/** number of up/down moves */
 	private static final
-	int					NUM_VERTICAL = 4;
+	int					NUM_VERTICAL = 16;
 
 	/** horizontal position */
 	private
@@ -214,8 +214,8 @@ class					MainActivity
 			Rect		clipBounds;
 			int			maxX;
 			int			maxY;
-			float		top;
-			float		left;
+			float		y;
+			float		x;
 			float		radius;
 			Paint		paint;
 
@@ -230,13 +230,15 @@ class					MainActivity
 			maxY = clipBounds.height();
 
 			// draw marker
-			left = (float) ( maxX / 2.0);
-			top = (float) ( maxY / 2.0);
+			x = (float) ( ( MainActivity.this.curX + 1) *
+					( maxX / ( NUM_HORIZONTAL + 1) ) );
+			y = (float) ( ( MainActivity.this.curY + 1) *
+					( maxY / ( NUM_VERTICAL + 1) ) );
 			radius = (float) ( maxY / 24.0);
 			paint = new Paint();
 			paint.setColor( Color.BLACK);
 			paint.setStyle( Paint.Style.FILL);
-			canvas.drawCircle( left, top, radius, paint);
+			canvas.drawCircle( x, y, radius, paint);
 			}  // _________________________________________
 
 		}  // =============================================
