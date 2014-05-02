@@ -26,11 +26,12 @@
 	</RelativeLayout>
 	<!-- TODO:  Canvas area -->
 	<RelativeLayout
+		android:id="@+id/dpad_canvas"
 		android:layout_weight="6"
 		android:layout_width="fill_parent"
 		android:layout_height="60mm"
 	>
-		<TextView
+		<!-- TextView
 			android:id="@+id/dpad_canvas"
 			android:layout_weight="6"
 			android:layout_width="fill_parent"
@@ -39,7 +40,7 @@
 			android:textColor="#EE0000"
 			android:text="TODO: put graphics here"
 			android:padding="3mm"
-		/>
+		/ -->
 	</RelativeLayout>
 	<!-- sparsely populated 3 x 3 grid -->
 	<RelativeLayout
