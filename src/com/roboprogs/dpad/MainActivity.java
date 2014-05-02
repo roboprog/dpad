@@ -26,6 +26,22 @@ class					MainActivity
 	extends				Activity
 	{
 
+	/** number of left/right moves */
+	private static final
+	int					NUM_HORIZONTAL = 4;
+
+	/** number of up/down moves */
+	private static final
+	int					NUM_VERTICAL = 4;
+
+	/** horizontal position */
+	private
+	int					curX = 0;
+
+	/** vertical position */
+	private
+	int					curY = 0;
+
 	/** handle to logging panel */
 	private
 	TextView			logBox;
@@ -103,6 +119,42 @@ class					MainActivity
 		}  // _____________________________________________
 
 	/**
+	 * Update position when a button is pressed.
+	 *
+	 * @param btn
+	 * 		the button instance that was pressed/clicked
+	 */
+	private
+	void				updatePosition
+		(
+		Button			btn
+		)
+		{
+		this.curX += ( btn == this.right) ?
+					1 :
+				( btn == this.left) ?
+					-1 :
+					0;
+		this.curX = ( this.curX < 0) ?
+					( NUM_HORIZONTAL - 1) :
+				( this.curX >= NUM_HORIZONTAL) ?
+					0 :
+					this.curX;
+
+		this.curY += ( btn == this.down) ?
+					1 :
+				( btn == this.up) ?
+					-1 :
+					0;
+		this.curY = ( this.curY < 0) ?
+					( NUM_VERTICAL - 1) :
+				( this.curY >= NUM_VERTICAL) ?
+					0 :
+					this.curY;
+		info( "Position: " + this.curX + ", " + this.curY);
+		}  // _____________________________________________
+
+	/**
 	 * Update display.
 	 */
 	private
@@ -173,7 +225,7 @@ class					MainActivity
 			// get metrics
 			// TODO:  only recalc when needed
 			clipBounds = canvas.getClipBounds();
-			info( "Bounds: " + clipBounds);
+			// info( "Bounds: " + clipBounds);
 			maxX = clipBounds.width();
 			maxY = clipBounds.height();
 
@@ -209,6 +261,7 @@ class					MainActivity
 
 			btn = (Button) v;
 			info( "Button " + btn.getText() + " pressed");
+			updatePosition( btn);
 
 			// request redraw on view used for Canvas:
 			MainActivity.this.canvasView.invalidate();
