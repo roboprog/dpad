@@ -32,7 +32,7 @@ class					MainActivity
 
 	/** handle to placeholder panel */
 	private
-	TextView			placeholder;
+	View				canvasView;
 
 	/** up button */
 	private
@@ -61,16 +61,19 @@ class					MainActivity
         super.onCreate( icicle);
 
 		ViewGroup		root;
+		ViewGroup		canvasContainer;
 
         setContentView( R.layout.main);
 		root = (ViewGroup) findViewById( R.id.dpad_root);
 		// root = null;
 		// new Layout( this, root);  // TODO:  save this
-		// TODO:  get layout container, append CanvasView:
-		new CanvasView( this);
+		this.canvasView = new CanvasView( this);
+		canvasContainer = (ViewGroup) findViewById( R.id.dpad_canvas);
+		canvasContainer.addView( this.canvasView);
 		wireEvents();
 		info( "Event handlers in place");
 		info( "Root view group: " + root);
+		info( "Canvas view: " + this.canvasView);
 		}  // _____________________________________________
 
 	/**
@@ -82,7 +85,6 @@ class					MainActivity
 		BtnTracker		btnTracker;
 
 		this.logBox = (TextView) findViewById( R.id.dpad_log);
-		this.placeholder = (TextView) findViewById( R.id.dpad_canvas);
 
 		btnTracker = new BtnTracker();
 		this.up = (Button) findViewById( R.id.dpad_up);
@@ -103,7 +105,6 @@ class					MainActivity
 	void				updateStatus()
 		{
 		this.logBox.setText( this.logText);
-		this.placeholder.setText( "TODO");
 		// TODO:  update other controls
 		}  // _____________________________________________
 
@@ -181,7 +182,7 @@ class					MainActivity
 			info( "Button " + btn.getText() + " pressed");
 
 			// request redraw on view used for Canvas:
-			MainActivity.this.placeholder.invalidate();
+			MainActivity.this.canvasView.invalidate();
 			}  // _________________________________________
 
 		}  // =============================================
