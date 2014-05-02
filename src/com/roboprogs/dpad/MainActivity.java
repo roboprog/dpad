@@ -166,15 +166,6 @@ class					MainActivity
 		}  // _____________________________________________
 
 	/**
-	 * Update display.
-	 */
-	private
-	void				updateStatus()
-		{
-		this.logBox.setText( this.logText);
-		}  // _____________________________________________
-
-	/**
 	 * Spout a log message.
 	 */
 	private
@@ -190,7 +181,7 @@ class					MainActivity
 		// (newest on top, so don't have to scroll down)
 		this.logText = ( "I) " + msg + "\n" + this.logText);
 		// TODO: timestamp
-		updateStatus();
+		this.logBox.setText( this.logText);
 		}  // _____________________________________________
 
 	/**
