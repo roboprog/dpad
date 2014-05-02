@@ -16,7 +16,15 @@ import android.widget.TextView;
 /**
  * Main view for "DPAD" test bed applet.
  * <p>
- * <///p>
+ * Program entry point is the onCreate() method.
+ * Main tasks:
+ * <ul>
+ * 		<li>Add custom view to enable access to android canvas</li>
+ * 		<li>Wire up event handlers to catch button presses</li>
+ * </ul>
+ * </p>
+ *
+ * @see #onCreate()
  */
 public
 class					MainActivity
@@ -77,15 +85,27 @@ class					MainActivity
 		{
         super.onCreate( icicle);
 
+		extendLayout();
+		wireEvents();
+
+		// our logging supplement needs events wired up fist
+
+		info( "Event handlers in place");
+		info( "Canvas view: " + this.canvasView);
+		}  // _____________________________________________
+
+	/**
+	 * Complete layout by adding graphics-enabled view.
+	 */
+	private
+	void				extendLayout()
+		{
 		ViewGroup		canvasContainer;
 
         setContentView( R.layout.main);
 		this.canvasView = new CanvasView( this);
 		canvasContainer = (ViewGroup) findViewById( R.id.dpad_canvas);
 		canvasContainer.addView( this.canvasView);
-		wireEvents();
-		info( "Event handlers in place");
-		info( "Canvas view: " + this.canvasView);
 		}  // _____________________________________________
 
 	/**
@@ -107,7 +127,6 @@ class					MainActivity
 		this.left.setOnClickListener( btnTracker);
 		this.right = (Button) findViewById( R.id.dpad_right);
 		this.right.setOnClickListener( btnTracker);
-
 		}  // _____________________________________________
 
 	/**
