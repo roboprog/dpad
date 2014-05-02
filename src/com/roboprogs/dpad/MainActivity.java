@@ -141,28 +141,62 @@ class					MainActivity
 		Button			btn
 		)
 		{
-		this.curX += ( btn == this.right) ?
-					1 :
-				( btn == this.left) ?
-					-1 :
-					0;
-		this.curX = ( this.curX < 0) ?
-					( NUM_HORIZONTAL - 1) :
-				( this.curX >= NUM_HORIZONTAL) ?
-					0 :
-					this.curX;
-
-		this.curY += ( btn == this.down) ?
-					1 :
-				( btn == this.up) ?
-					-1 :
-					0;
-		this.curY = ( this.curY < 0) ?
-					( NUM_VERTICAL - 1) :
-				( this.curY >= NUM_VERTICAL) ?
-					0 :
-					this.curY;
+		info( "Button " + btn.getText() + " pressed");
+		this.curX = updatePosition( btn, this.curX,
+				this.right, this.left, NUM_HORIZONTAL);
+		this.curY = updatePosition( btn, this.curY,
+				this.down, this.up, NUM_VERTICAL);
 		info( "Position: " + this.curX + ", " + this.curY);
+
+		// request redraw on view used for Canvas:
+		MainActivity.this.canvasView.invalidate();
+		}  // _____________________________________________
+
+	/**
+	 * Update X or Y position when a button is pressed,
+	 * 	accounting for wrapping.
+	 *
+	 * @param btn
+	 * 		the button instance that was pressed/clicked
+	 * @param cur
+	 * 		the current position on this axis
+	 * @param inc
+	 * 		the button to increment position on this axis
+	 * @param dec
+	 * 		the button to decrement position on this axis
+	 * @param limit
+	 * 		the limit for this axis
+	 */
+	private
+	int					updatePosition
+		(
+		Button			btn,
+		int				cur,
+		Button			inc,
+		Button			dec,
+		int				limit
+		)
+		{
+		int				newPos;
+
+		newPos = cur;
+
+		// check for increment/decrement buttons for this axis,
+		//  ignore other buttons
+		newPos += ( btn == inc) ?
+					1 :
+				( btn == dec) ?
+					-1 :
+					0;
+
+		// check for under/overflow and wrap if needed
+		newPos = ( newPos < 0) ?
+					( limit - 1) :
+				( newPos >= limit) ?
+					0 :
+					newPos;
+
+		return newPos;
 		}  // _____________________________________________
 
 	/**
@@ -262,11 +296,7 @@ class					MainActivity
 			Button		btn;
 
 			btn = (Button) v;
-			info( "Button " + btn.getText() + " pressed");
 			updatePosition( btn);
-
-			// request redraw on view used for Canvas:
-			MainActivity.this.canvasView.invalidate();
 			}  // _________________________________________
 
 		}  // =============================================
