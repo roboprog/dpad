@@ -8,6 +8,14 @@ Demo program was developed and built ON Android using the "Terminal IDE" environ
 https://play.google.com/store/apps/details?id=com.spartacusrex.spartacuside
 
 
+Recommended reading:
+* src/com/roboprogs/dpad/MainActivity.java
+* res/layout/main.xml
+* Makefile
+
+(yes, Makefile!  No bloody Ant, Maven nor Gradle)
+
+
 I have yet to test this on devices other than my Nexus 7, and there are one or two "dead files" to remove,
 but it should provide you with a short example of getting a graphics canvas,
 scaling your drawing to fit the viewport and trapping the events to update the display.
